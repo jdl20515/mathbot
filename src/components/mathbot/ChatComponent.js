@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import axios from 'axios';
 import './ChatComponent.css'; // Import the CSS file
 
-const apiKey = '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'; // Read API key from an environment variable
+const apiKey = 'API KEY HERE'; // Read API key from an environment variable
 const apiUrl = 'https://api.openai.com/v1/engines/text-davinci-003/completions';
 
 const ChatComponent = () => {
