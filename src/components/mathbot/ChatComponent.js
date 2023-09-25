@@ -1,7 +1,9 @@
 
 import React, { useState } from 'react';
+import axios from 'axios';
 
 const apiKey = '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'; // Read API key from environment variable
+
 
 const ChatComponent = () => {
   const [messages, setMessages] = useState([]);
@@ -12,41 +14,29 @@ const ChatComponent = () => {
       // Add user message to state
       setMessages([...messages, { text: input, type: 'user' }]);
 
-      // Add a system message with custom instructions
-      setMessages([
-        ...messages,
-        {
-          text: 'You are a teacher. Please provide assistance as you would in a classroom.',
-          type: 'system',
-        },
-      ]);
-
-      // Make API request to ChatGPT using fetch
+      // Make API request to ChatGPT
       try {
-        const response = await fetch('https://api.openai.com/v1/completions', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${apiKey}`,
+        const response = await axios.post(
+          'https://api.openai.com/v1/completions', // Use the new completion endpoint
+          {
+            model: 'text-davinci-003', // Replace with the appropriate model
+            prompt: input, // Use the user's input as the prompt
+            max_tokens: 50, // Specify the desired max tokens
+            temperature: 0.8, // Set the temperature parameter
           },
-          body: JSON.stringify({
-            model: 'gpt-3.5-turbo',
-            messages: messages, // Include all messages in the conversation
-            max_tokens: 50,
-            temperature: 0.8,
-          }),
-        });
-
-        if (!response.ok) {
-          throw new Error('API request failed');
-        }
-
-        const data = await response.json();
+          {
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${process.env.REACT_APP_CHATGPT_API_KEY}`,
+            },
+          }
+        );
 
         // Add assistant's reply to state
-        setMessages([...messages, { text: data.choices[0].text, type: 'assistant' }]);
+        setMessages([...messages, { text: response.data.choices[0].text, type: 'assistant' }]);
       } catch (error) {
         console.error('Error fetching response:', error);
+        console.log('API Error Response:', error.response); // Log the response for more details
       }
 
       setInput('');
