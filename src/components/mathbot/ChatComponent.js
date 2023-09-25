@@ -2,7 +2,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-const apiKey = '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'; // Read API key from environment variable
+const apiKey = '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'; // Read API key from environment variable
+const apiUrl = 'https://api.openai.com/v1/engines/text-davinci-003/completions';
 
 
 const ChatComponent = () => {
@@ -13,32 +14,31 @@ const ChatComponent = () => {
     if (input) {
       // Add user message to state
       setMessages([...messages, { text: input, type: 'user' }]);
-
+  
       // Make API request to ChatGPT
       try {
         const response = await axios.post(
-          'https://api.openai.com/v1/completions', // Use the new completion endpoint
+          apiUrl,
           {
-            model: 'text-davinci-003', // Replace with the appropriate model
-            prompt: input, // Use the user's input as the prompt
-            max_tokens: 50, // Specify the desired max tokens
-            temperature: 0.8, // Set the temperature parameter
+            prompt: input,
+            max_tokens: 50,
+            temperature: 0.8,
           },
           {
             headers: {
               'Content-Type': 'application/json',
-              'Authorization': `Bearer ${process.env.REACT_APP_CHATGPT_API_KEY}`,
+              'Authorization': `Bearer ${apiKey}`,
             },
           }
         );
-
+  
         // Add assistant's reply to state
         setMessages([...messages, { text: response.data.choices[0].text, type: 'assistant' }]);
       } catch (error) {
         console.error('Error fetching response:', error);
         console.log('API Error Response:', error.response); // Log the response for more details
       }
-
+  
       setInput('');
     }
   };
