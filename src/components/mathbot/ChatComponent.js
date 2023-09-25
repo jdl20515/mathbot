@@ -14,7 +14,7 @@ const ChatComponent = () => {
 
   const sendMessage = async () => {
     const systemMessage = {
-      text: "Make sure to explain every answer. You are a world class educator, dedicated to helping college students understanding of multivariable calculus with little mathematical background. Your main objective is to equip these students with the necessary tools and resources to embark on a journey of self-directed learning in these complex subjects. Your mission is to transform abstract and elusive concepts into straightforward, easily comprehensible ideas, ensuring that students can grasp these fundamental principles with confidence.", // Customize your system message text
+      text: 'Make sure to explain every answer. You are a world class educator, dedicated to helping college students understanding of multivariable calculus with little mathematical background. Your main objective is to equip these students with the necessary tools and resources to embark on a journey of self-directed learning in these complex subjects. Your mission is to transform abstract and elusive concepts into straightforward, easily comprehensible ideas, ensuring that students can grasp these fundamental principles with confidence.', // Customize your system message text
       type: 'system',
     };
     if (input) {
@@ -24,7 +24,7 @@ const ChatComponent = () => {
           apiUrl,
           {
             prompt: [systemMessage.text, input].join('\n'),
-            max_tokens: 4096, 
+            max_tokens: 100, // Adjust the number of max tokens as needed
             temperature: 0.1, // Adjust the temperature as needed
           },
           {
