@@ -23,8 +23,8 @@
   text-align: end;
   background-color: #e6f7ff;
   align-self: flex-end;
-  margin-top: 5px;
-  padding: 10px; /* Increased padding for user messages */
+  margin-top: 15px;
+  padding: 15px; /* Increased padding for user messages */
 }
 
 /* Align assistant messages to the left */
@@ -32,14 +32,14 @@
   text-align: start;
   background-color: #f2f2f2;
   align-self: flex-start;
-  margin-top: 5px;
-  padding: 10px; /* Increased padding for assistant messages */
+  margin-top: 15px;
+  padding: 15px; /* Increased padding for assistant messages */
 }
 
 .message {
-  padding: 15px; /* Increased padding for all messages */
+  padding: 25px; /* Increased padding for all messages */
   margin: 5px;
-  border-radius: 5px;
+  border-radius: 15px;
   word-wrap: break-word;
   max-width: 70%; /* Adjust the maximum width of messages */
 }

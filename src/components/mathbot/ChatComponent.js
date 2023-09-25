@@ -24,7 +24,7 @@ const ChatComponent = () => {
           apiUrl,
           {
             prompt: [systemMessage.text, input].join('\n'),
-            max_tokens: 100, // Adjust the number of max tokens as needed
+            max_tokens: 1000, // Adjust the number of max tokens as needed
             temperature: 0.1, // Adjust the temperature as needed
           },
           {
