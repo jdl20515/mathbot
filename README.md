@@ -1,3 +1,4 @@
+
 # Add your API Key
 1. In the server folder, modify the .env file to include your API Key.
 
@@ -6,10 +7,11 @@
 1. Open a terminal (at the top) 
 
 2. To move into the app directory, in your terminal type:
-### `cd my-app`
+### `cd frontend`
 
 3. Once in, to start your server type:
-### `npm start`
+### `npm install`
+### `npm run start`
 
 
 # Start your Backend
@@ -20,6 +22,7 @@
 ### `cd server`
 
 3. Once in, to start your server type:
+### `npm install`
 ### `npm run start`
 
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser. Your chatbot should be working!
