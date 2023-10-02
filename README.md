@@ -1,40 +1,28 @@
-# React Portfolio, multiple pages with dark mode
+# Add your API Key
+1. In the server folder, modify the .env file to include your API Key.
 
-## a portfolio for developers
+# Start your Frontend
 
-[View Live Template](https://reactportfoliotemplate.paytonpierce.dev/)
+1. Open a terminal (at the top) 
 
-## features
+2. To move into the app directory, in your terminal type:
+### `cd my-app`
 
-🌑 Dark Mode Toggler
-
-📖 Multiple Pages (React Router)
-
-📱 Fully Responsive
-
-🎨 Modern Design
-
-💡 Perfect Lighthouse Score
-
-![screenshot of perfect lighthouse score](https://user-images.githubusercontent.com/18350557/179609620-847374a6-23e6-4432-b7a8-181d7d9bf026.png)
+3. Once in, to start your server type:
+### `npm start`
 
 
----
+# Start your Backend
 
-## getting started
+1. Open a new terminal (Do not get rid of your old terminal)
 
-### prerequisites
+2. To move into the server directory, in your terminal type:
+### `cd server`
 
-- have [Git](https://git-scm.com/) installed on your machine
-- have [Node.js](https://nodejs.org/en/download/) installed on your machine
-- basic familiarity with your machine's command line
-- basic understanding of JSON data outline (arrays of objects basically)
+3. Once in, to start your server type:
+### `npm run start`
 
-## how to use
-
-- fork the repository and clone locally
-- cd into the project and run `npm install` to install dependencies
-- once installation is complete, run `npm run start` to get your local copy running in the browser.
+Open [http://localhost:3000](http://localhost:3000) to view it in your browser. Your chatbot should be working!
 
 ## template instructions
 
