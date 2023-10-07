@@ -51,6 +51,7 @@ export default function BaseLayout() {
             </Grid>
          </Grid>
       </Box>
+      
    )
 }
 

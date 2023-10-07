@@ -1,8 +1,8 @@
 import React from 'react';
-import me from '../../img/self.png';
+// import me from '../../img/self.png';
 import classNames from 'classnames';
 import {Box} from "@mui/material";
-import {info} from "../../info/Info";
+import {info} from "../info/Info";
 import Style from './tailwind.css';
 
 export default function Data() {
@@ -60,12 +60,12 @@ export default function Data() {
   </div>
 </article>
 
-<article class="rounded-lg border border-gray-100 bg-white p-6">
+<article class="rounded-lg border border-gray-200 bg-white p-6">
   <div class="flex items-center justify-between">
     <div>
       <p class="text-sm text-gray-500">Profit</p>
 
-      <p class="text-2xl font-medium text-gray-900">$240.94</p>
+      <p class="text-2xl font-medium text-gray-100">$240.94</p>
     </div>
 
     <span class="rounded-full bg-blue-100 p-3 text-blue-600">

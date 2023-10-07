@@ -1,5 +1,5 @@
 import React from 'react';
-import Data from '../tailwind_components/data.jsx';
+import Data from '../../tailwind_components/data.jsx';
 import Style from './Home.module.scss';
 import me from '../../img/self.png';
 import classNames from 'classnames';
