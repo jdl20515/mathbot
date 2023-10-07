@@ -1,4 +1,5 @@
 import React from 'react';
+import Data from '../tailwind_components/data.jsx';
 import Style from './Home.module.scss';
 import me from '../../img/self.png';
 import classNames from 'classnames';
@@ -7,10 +8,17 @@ import SocialIcon from "./SocialIcon";
 import {Box} from "@mui/material";
 import {info} from "../../info/Info";
 
+
 export default function Home() {
 
    return (
-      <Box component={'main'} display={'flex'} flexDirection={{xs: 'column', md: 'row'}} alignItems={'center'}
+ 
+
+   <>
+   {/* Add in the data component */}
+   <Data/>
+
+<Box component={'main'} display={'flex'} flexDirection={{xs: 'column', md: 'row'}} alignItems={'center'}
            justifyContent={'center'} minHeight={'calc(100vh - 175px)'}>
          {/* <Box className={classNames(Style.avatar, Style.shadowed)} alt={'image of developer'} style={{background: info.gradient}} component={'img'} src={me} width={{xs: '35vh', md: '40vh'}}
               height={{xs: '35vh', md: '40vh'}}
@@ -31,5 +39,7 @@ export default function Home() {
             </Box>
          </Box>
       </Box>
+
+</>
    )
 }

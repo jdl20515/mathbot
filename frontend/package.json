@@ -22,6 +22,7 @@
     "react-router-dom": "^6.3.0",
     "react-scripts": "^5.0.1",
     "sass": "^1.54.5",
+    "tw-elements": "^1.0.0",
     "typescript": "^4.7.4"
   },
   "scripts": {
@@ -44,5 +45,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.3.3"
   }
 }
