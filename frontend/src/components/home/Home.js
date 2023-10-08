@@ -7,7 +7,7 @@ import EmojiBullet from "./EmojiBullet";
 import SocialIcon from "./SocialIcon";
 import {Box} from "@mui/material";
 import {info} from "../../info/Info";
-
+import Popup from '../../tailwind_components/popup.jsx';
 
 export default function Home() {
 
@@ -16,7 +16,7 @@ export default function Home() {
 
    <>
    {/* Add in the data component */}
-   <Data/>
+   <Popup/>
 
 <Box component={'main'} display={'flex'} flexDirection={{xs: 'column', md: 'row'}} alignItems={'center'}
            justifyContent={'center'} minHeight={'calc(100vh - 175px)'}>

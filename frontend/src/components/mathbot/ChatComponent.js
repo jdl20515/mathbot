@@ -43,7 +43,7 @@ function ChatComponent() {
  
   return (
     <div className="chat-container">
-      <h1>MathBot</h1>
+      <h1 text-xl>MathBot</h1>
       <p>Your friendly math assistant</p>
       <div className="chat-messages" ref={chatContainerRef}>
         {/* Display messages */}
