@@ -3,7 +3,7 @@ import React from 'react';
 import classNames from 'classnames';
 import {Box} from "@mui/material";
 import {info} from "../info/Info";
-import Style from './tailwind.css';
+// import Style from './tailwind.css';
 
 export default function Data() {
 

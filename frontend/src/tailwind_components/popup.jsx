@@ -3,7 +3,7 @@ import React from 'react';
 import classNames from 'classnames';
 import {Box} from "@mui/material";
 import {info} from "../info/Info";
-import Style from './tailwind.css';
+import Style from '../index.css';
 
 export default function Popup() {
 
@@ -29,10 +29,10 @@ export default function Popup() {
       </svg>
     </span>
 
-    <div class="flex-1">
+    <div class="flex-1 ">
       <strong class="block font-lg text-gray-1000"> Check out Mathbot! </strong>
 
-      <p class="mt-1 text-sm text-gray-700">
+      <p class="mt-1  text-sm text-gray-700">
         Study smarter
       </p>
 
@@ -63,7 +63,7 @@ export default function Popup() {
       </div>
     </div>
 
-    <button class="text-gray-500 transition hover:text-gray-600">
+    {/* <button class="text-gray-500 transition hover:text-gray-600">
       <span class="sr-only">Dismiss popup</span>
 
       <svg
@@ -80,7 +80,7 @@ export default function Popup() {
           d="M6 18L18 6M6 6l12 12"
         />
       </svg>
-    </button>
+    </button> */}
   </div>
 </div>
 
