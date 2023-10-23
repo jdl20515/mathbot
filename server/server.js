@@ -44,6 +44,10 @@ app.post('/', async (req, res) => {
                 { role: 'user', content: prompt },
             ],
             model: 'gpt-3.5-turbo',
+            temperature: 1
+           
+            
+
         })
 
         if (!response.choices || !response.choices[0].message.content) {
