@@ -49,11 +49,11 @@ function ChatComponent() {
         <h1 className="text-4xl font-bold mb-8">MathBot</h1>
       </div>
 
-      <div className="flex flex-col items-center justify-center bg-gray-100 p-1 h-96">
+      <div className="flex flex-col items-center justify-center bg-gray-100 p-1 ">
 
-        <div className="chat-messages w-10/12 max-h-60 overflow-y-auto mb-8 flex flex-col p-4 bg-gray-100 rounded-lg" ref={chatContainerRef}>
-          {/* Display messages */}
+        <div className="chat-messages w-10/12 h-90 overflow-y-auto mb-8 flex flex-col p-4 bg-gray-100 rounded-lg" ref={chatContainerRef}>
           {messages.map((message, index) => (
+        
             <div
               key={index}
               className={`message p-4 rounded mb-4 text-lg max-w-xl ${
