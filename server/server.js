@@ -44,7 +44,8 @@ app.post('/', async (req, res) => {
                 { role: 'user', content: prompt },
             ],
             model: 'gpt-3.5-turbo',
-            temperature: 1
+            temperature: 0.1,
+            
            
             
 
