@@ -1,76 +1,78 @@
-import React, { useState, useRef, useEffect } from 'react';
-import './ChatComponent.css'; // Import the CSS file
+import express from 'express';
+import dotenv from 'dotenv';
+import cors from 'cors';
+import { ZodError } from 'zod'; // Import ZodError if you haven't already
 
-function ChatComponent() {
-  const [input, setInput] = useState('')
-  const [messages, setMessages] = useState([])
-  const chatContainerRef = useRef(null);
+dotenv.config();
+import OpenAI from 'openai';
 
-  const handleSubmit = async (e) => {
-      e.preventDefault()
+const openai = new OpenAI({
+    apiKey: process.env.OPEN_AI_KEY,
+});
 
-      // Adding user's message
-      setMessages((prev) => [...prev, { type: 'user', text: input }])
+const app = express();
+app.use(cors());
+app.use(express.json());
 
-      const response = await fetch('http://localhost:3001/', {
-          // <-- Fixed typo here
-          method: 'POST',
-          headers: {
-              'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-              prompt: input,
-          }),
-      })
-
-      if (response.ok) {
-          const data = await response.json()
-          setMessages((prev) => [
-              ...prev,
-              { type: 'bot', text: data.bot.trim() },
-          ])
-      } else {
-          const err = await response.text()
-          alert(err)
-      }
-
-      setInput('')
-  }
-  useEffect(() => {
-    // Scroll to the bottom of the chat container
-    chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
-  }, [messages]);
- 
-  return (
-    <div className="chat-container">
-      <h1>MathBot</h1>
-      <p>Your friendly math assistant</p>
-      <div className="chat-messages" ref={chatContainerRef}>
-        {/* Display messages */}
-        {messages.map((message, index) => (
-          <div
-            key={index}
-            className={`message-${message.type === 'user' ? 'user' : 'assistant'}`}
-          >
-            {message.text}
-          </div>
-        ))}
-      </div>
-
-      <form onSubmit={handleSubmit} className="mt-4">
-        <input
-          type="text"
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-          placeholder="Type a message..."
-          className="border rounded p-2 w-3/4"
-        />
-        <button type="submit" className="ml-2 bg-blue-500 text-white p-2 rounded">
-          Send
-        </button>
-      </form>
-    </div>
-  );
+// Define a custom error handling middleware
+const errorHandler = (err, req, res, next) => {
+    console.error(err.stack);
+    res.status(500).send({ error: 'Something went wrong!' });
 };
 
-export default ChatComponent;
+app.use(errorHandler);
+
+app.get('/', async (req, res) => {
+    res.status(200).send({
+        message: 'Hello from Cyber',
+    });
+});
+
+app.post('/', async (req, res) => {
+    try {
+        const prompt = req.body.prompt;
+
+        if (!prompt) {
+            // If prompt is missing in the request, return a bad request response
+            return res
+                .status(400)
+                .send({ error: "Missing 'prompt' in the request body" });
+        }
+
+        const response = await openai.chat.completions.create({
+            messages: [
+                { role: 'system', content: 'Make sure to explain every answer...' },
+                { role: 'user', content: prompt },
+            ],
+            model: 'gpt-3.5-turbo',
+        });
+
+        // Check if the response is valid and has the expected properties
+        if (!response || !response.choices || !Array.isArray(response.choices) || response.choices.length === 0 || !response.choices[0].message || typeof response.choices[0].message.content !== 'string') {
+            console.error('Invalid or unexpected response from OpenAI:', response);
+            return res.status(500).send({ error: 'Invalid or unexpected response from OpenAI' });
+        }
+
+        // Send the bot's response back to the client
+        res.status(200).send({
+            bot: response.choices[0].message.content.trim(),
+        });
+
+    } catch (error) {
+        if (error instanceof ZodError) {
+            // Handle ZodError (or other specific errors) with a 400 Bad Request response
+            return res.status(400).send({ error: 'Invalid request body' });
+        } else {
+            // Log the error for debugging purposes
+            console.error(error);
+
+            // Return a generic internal server error response
+            return res.status(500).send({ error: 'Internal server error' });
+        }
+    }
+});
+
+const PORT = process.env.PORT || 3001;
+app.listen(PORT, () =>
+    console.log(`Server is running on port http://localhost:${PORT}`)
+);
